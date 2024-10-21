@@ -1,41 +1,40 @@
 package json.cdm.ejemplo.modelo;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class AnnotatedPerson {
-    @JsonProperty("first_name")
-    private String firstName = "";
-    @JsonProperty("last_name")
-    private String lastName = "";
-    private int age = 0;
 
-    public AnnotatedPerson(String firstName, String lastName, int age) {
+    private String firstName;
+    private String lastName;
+    private int age;
+
+    @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
+    public AnnotatedPerson(@JsonProperty("first_name") String firstName, @JsonProperty("last_name") String lastName,
+            @JsonProperty("age") int age) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
     }
 
+    @JsonProperty("first_name")
     public String getFirstName() {
         return firstName;
     }
 
+    @JsonProperty("last_name")
     public String getLastName() {
         return lastName;
     }
 
+ 
     public int getAge() {
         return age;
-    }
-
-    // Default constructor es necesario
-    public AnnotatedPerson() {
     }
 
     @Override
     public String toString() {
         return "AnnotatedPerson [firs_name=" + firstName + ", last_name=" + lastName + ", age=" + age + "]";
     }
-
-  
 
 }

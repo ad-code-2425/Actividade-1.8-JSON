@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 import json.cdm.ejemplo.modelo.AnnotatedPerson;
 import json.cdm.ejemplo.modelo.Person;
-import json.cdm.ejemplo.modelo.serializer.PersonNotPOJO;
 
 public class Main {
 
@@ -19,22 +18,21 @@ public class Main {
         var annotatedPersonEmptyCtror = new AnnotatedPerson("Annotated Grant", "Annotated Hughes", 20);
         testJson(annotatedPersonEmptyCtror);
 
-        var person = new PersonNotPOJO("final Grant", "final Hughes", 21);
-        testJson(person);
+        
 
        
     }
     
     private static void testJson(Object object) {
         String jsonString = toJSON(object);
-        fromJSON(jsonString);
+        fromJSON(jsonString, object.getClass() );
     }
    
 
-    private static void fromJSON(String jsonString) {
+    private static void fromJSON(String jsonString, Class<?> destinationClass) {
         var mapper = new ObjectMapper();
         try {
-            var grant = mapper.readValue(jsonString, Person.class);
+            var grant = mapper.readValue(jsonString, destinationClass);
             System.out.println(grant);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
