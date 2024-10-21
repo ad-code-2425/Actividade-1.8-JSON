@@ -6,21 +6,19 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 
-import json.cdm.ejemplo.modelo.Person;
-
-public class PersonSerializer extends StdSerializer<Person> {
+public class PersonNotPOJOSerializer extends StdSerializer<PersonNotPOJO> {
     
-    public PersonSerializer() {
+    public PersonNotPOJOSerializer() {
         //Empty constructor uses the parameterized constructor below
         this(null);
     }
 
-    public PersonSerializer(Class<Person> t) {
+    public PersonNotPOJOSerializer(Class<PersonNotPOJO> t) {
         super(t);
     }
 
     @Override
-    public void serialize(Person value, JsonGenerator gen, SerializerProvider provider) throws IOException {
+    public void serialize(PersonNotPOJO value, JsonGenerator gen, SerializerProvider provider) throws IOException {
         gen.writeStartObject();
         gen.writeStringField("first_name", value.firstName());
         gen.writeStringField("last_name", value.lastName());

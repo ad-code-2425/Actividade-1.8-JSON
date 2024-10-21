@@ -4,22 +4,22 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
-import json.cdm.ejemplo.modelo.AnnotatedPersonEmptyCtror;
+import json.cdm.ejemplo.modelo.AnnotatedPerson;
 import json.cdm.ejemplo.modelo.Person;
-import json.cdm.ejemplo.modelo.PersonEmptyCtror;
+import json.cdm.ejemplo.modelo.serializer.PersonNotPOJO;
 
 public class Main {
 
     //Ejemplos de: https://blogs.oracle.com/javamagazine/post/java-json-serialization-jackson
 
     public static void main(String[] args) {
-        var personEmptyCtror = new PersonEmptyCtror("Grant", "Hughes", 19);
+        var personEmptyCtror = new Person("Grant", "Hughes", 19);
         testJson(personEmptyCtror);
 
-        var annotatedPersonEmptyCtror = new AnnotatedPersonEmptyCtror("Annotated Grant", "Annotated Hughes", 20);
+        var annotatedPersonEmptyCtror = new AnnotatedPerson("Annotated Grant", "Annotated Hughes", 20);
         testJson(annotatedPersonEmptyCtror);
 
-        var person = new Person("final Grant", "final Hughes", 21);
+        var person = new PersonNotPOJO("final Grant", "final Hughes", 21);
         testJson(person);
 
        
@@ -34,7 +34,7 @@ public class Main {
     private static void fromJSON(String jsonString) {
         var mapper = new ObjectMapper();
         try {
-            var grant = mapper.readValue(jsonString, PersonEmptyCtror.class);
+            var grant = mapper.readValue(jsonString, Person.class);
             System.out.println(grant);
         } catch (JsonProcessingException e) {
             e.printStackTrace();

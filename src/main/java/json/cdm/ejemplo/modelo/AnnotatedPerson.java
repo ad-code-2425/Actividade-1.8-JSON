@@ -2,14 +2,14 @@ package json.cdm.ejemplo.modelo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class AnnotatedPersonEmptyCtror {
+public class AnnotatedPerson {
     @JsonProperty("first_name")
     private String firstName = "";
     @JsonProperty("last_name")
     private String lastName = "";
     private int age = 0;
 
-    public AnnotatedPersonEmptyCtror(String firstName, String lastName, int age) {
+    public AnnotatedPerson(String firstName, String lastName, int age) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -28,7 +28,7 @@ public class AnnotatedPersonEmptyCtror {
     }
 
     // Default constructor es necesario
-    public AnnotatedPersonEmptyCtror() {
+    public AnnotatedPerson() {
     }
 
     @Override
