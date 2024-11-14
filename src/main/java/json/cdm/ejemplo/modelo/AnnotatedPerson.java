@@ -9,6 +9,8 @@ public class AnnotatedPerson {
     private String lastName;
     private int age;
 
+    //para ver las explicación de estas anotaciones, podéis consultar
+    //    //Ejemplos de: https://blogs.oracle.com/javamagazine/post/java-json-serialization-jackson
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
     public AnnotatedPerson(@JsonProperty("first_name") String firstName, @JsonProperty("last_name") String lastName,
             @JsonProperty("age") int age) {
